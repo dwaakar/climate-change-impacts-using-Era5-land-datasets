@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 # ========================= USER CONFIG =========================
 # Set the paths for your observed and model CSVs.
-ROOT = r"C:\\Users\Diwakar Adhikari\\Downloads\\SWAT+\\Model Selection\\GCM\\tmin\\tmin_regrid\\QDM\\standardized"
+ROOT = r"youtpath"
 OBS_FILENAME = "observed_daily_tmin_per-grid_std.csv"   # observed tmin
 MODEL_FILENAME = "MIROC-ES2L_ssp585_std.csv"           # one model CSV (historical+future if available)
 
@@ -336,4 +336,5 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         print(f"[ERROR] {e}")
+
         raise
