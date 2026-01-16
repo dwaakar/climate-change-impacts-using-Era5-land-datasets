@@ -1,0 +1,49 @@
+ERA5‑Land Data Extraction for Hydrological Modelling
+This repository documents how ERA5‑Land NetCDF data were extracted and processed for use in hydrological modelling.
+The goal was to generate daily, basin‑representative meteorological inputs that are spatially and temporally consistent with local hydrological processes.
+
+Data Source
+
+Dataset: ERA5‑Land
+Format: NetCDF (.nc)
+Native resolution:
+
+Spatial: ~0.1° × 0.1°
+Temporal: Hourly (UTC)
+
+
+Processing Steps
+1. Select ERA5‑Land Grid Cells
+All ERA5‑Land grid cells overlapping the basin were selected.
+Partial overlaps were explicitly considered (no simple nearest‑cell method).
+
+2. Area‑Weighted Spatial Averaging
+Basin‑average values were calculated using area‑weighted averaging.
+Each grid cell contributed according to the fraction of its area inside the basin.
+This avoids bias caused by irregular basin shapes or coarse grids.
+✅ Used for all variables (precipitation, temperature, etc.)
+
+3. Convert Time to Local Time
+ERA5‑Land data are provided in UTC.
+Time was converted to local time (Nepal Standard Time, UTC+05:45).
+This step was done before daily aggregation.
+✅ Ensures correct daily rainfall totals
+✅ Ensures Tmax/Tmin reflect real local day–night cycles
+
+4. Temporal Aggregation (Hourly → Daily)
+After local time conversion:
+Precipitation: daily sum
+Tmax: daily maximum
+Tmin: daily minimum
+Daily resolution was preserved for hydrological modelling.
+
+5. Output
+Final outputs are daily basin‑average time series
+Suitable for use in hydrological models (e.g., SWAT)
+Units and timestamps are consistent and quality‑checked
+
+Key Features
+✅ Area‑weighted spatial averaging
+✅ Local time handling (UTC → local time)
+✅ Daily hydrological forcing
+✅ Physically consistent for mountainous basins
