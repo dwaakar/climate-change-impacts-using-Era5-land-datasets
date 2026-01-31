@@ -81,10 +81,16 @@ This repository documents our full pipeline to build hydrological forcings from 
 **Inputs:** GCM `pr` (daily), ERA5‑Land template grid, DEM (GeoTIFF)  
 **Outputs:** GCM precipitation on ERA5‑Land grid with orographic adjustment
 
-### 4(b) Bilinear regridding (precipitation)
+### 4(b) Bilinear regridding (temperature)
 
-*   Used **bilinear** mapping for cases where a smoother interpolation was desired, or as a pre‑step for curvilinear → rectilinear conversion.
-*   Note: Bilinear does **not** conserve totals; use with caution for accumulated variables.
+- Uses **bilinear interpolation** to regrid temperature (tasmin / tasmax) from the native GCM grid to a basin-defined target grid.
+- Chosen because temperature is an **intensive variable**, where smooth spatial interpolation is appropriate.
+- Well-suited as a **pre-processing step** for converting curvilinear or coarse-resolution model grids to a regular lat–lon grid.
+- Produces smoother fields compared to nearest-neighbor methods.
+
+⚠️ Note:
+- Bilinear interpolation **does not conserve totals**.
+- Should **not** be used for accumulated or extensive variables (e.g., precipitation, runoff).
 
 **Inputs:** Same as 4(a)  
 **Outputs:** GCM precipitation on ERA5‑Land grid (bilinear variant)
