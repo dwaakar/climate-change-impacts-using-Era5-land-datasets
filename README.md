@@ -72,12 +72,18 @@ This repository documents our full pipeline to build hydrological forcings from 
 **Goal:** Map GCM precipitation to the **ERA5‑Land grid** and account for **topography**.
 
 ### 4(a) First‑order conservative + DEM (preferred for precipitation)
+* Uses **conservative (area‑weighted) regridding** to map GCM precipitation to the ERA5‑Land target grid,
+ensuring spatial totals are preserved.
+* Designed for **accumulated / extensive variables** such as precipitation.
+* Supports a **bilinear pre‑step** when converting from curvilinear GCM grids to a rectilinear ERA5 grid.
+* Aggregates high‑resolution DEM to the target grid for orographic adjustment.
 
-*   Regridded GCM `pr` to the **ERA5‑Land rectilinear grid** using **first‑order conservative (area‑weighted)**.
-*   Aggregated an external **DEM** onto the same grid (area‑weighted) to obtain grid‑mean elevation.
-*   Applied **orographic precipitation adjustment** (e.g., lapse‑rate scaling or climatology ratio) using the DEM‑derived elevation field.
-*   Preserved mass through **conservative\_normed** handling where applicable.
+Applies **orographic downscaling** using one of two methods:
+* **Lapse‑rate scaling**: monthly log‑linear precipitation–elevation relationship.
+* **Climatology ratio**: scales precipitation using a reference monthly climatology.
 
+Includes **QDM bias correction** (toggle option, multiplicative) and monthly renormalization
+to preserve large‑scale means.
 **Inputs:** GCM `pr` (daily), ERA5‑Land template grid, DEM (GeoTIFF)  
 **Outputs:** GCM precipitation on ERA5‑Land grid with orographic adjustment
 
