@@ -45,8 +45,7 @@ This repository documents our full pipeline to build hydrological forcings from 
 *   Downloaded **CMIP6** daily variables (historical + SSP2‑4.5 / SSP5‑8.5 as needed).
 *   Extracted target region bounding box.
 *   Standardized variable names/units (e.g., `pr` to **mm/day**).
-*   Kept historical (e.g., **1985–2014**) and future (**2015–2100**) **separate**.
-
+  
 **Inputs:** CMIP6 NetCDFs (per model/scenario)  
 **Outputs:** Region‑cropped, unit‑standardized GCM daily `.nc`
 
