@@ -59,7 +59,7 @@ This repository documents our full pipeline to build hydrological forcings from 
 
 *   Computed **ΔP** and **ΔT** between a baseline (e.g., **1985–2014**) and projection (e.g., **2041–2070**), typically at **annual** and **seasonal (e.g., JJAS)** scales.
 *   Ranked/filtered models based on spread and realism (e.g., within observed variability bounds).
-*   Selected **Top‑N** models covering the ΔP/ΔT space (wet/dry & warm/hot quadrants).
+*   Selected **Top‑N** models covering the ΔP/ΔT space (wet/dry & warm/cold quadrants).
 
 **Inputs:** GCM daily series (hist & fut), ERA5‑Land diagnostics for context  
 **Outputs:** List of selected GCMs (+ small table/figure of ΔP vs ΔT)
